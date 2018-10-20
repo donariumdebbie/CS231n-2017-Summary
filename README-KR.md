@@ -12,22 +12,22 @@
 - [스탠포드 CS231n 2017 요약](#스탠포드-cs231n-2017-요약)
   - [목차](#목차)
   - [강의 정보](#강의-정보)
-  - [01. Introduction to CNN for visual recognition](#01-introduction-to-cnn-for-visual-recognition)
-  - [02. Image classification](#02-image-classification)
-  - [03. Loss function and optimization](#03-loss-function-and-optimization)
-  - [04. Introduction to Neural network](#04-introduction-to-neural-network)
-  - [05. Convolutional neural networks (CNNs)](#05-convolutional-neural-networks-cnns)
-  - [06. Training neural networks I](#06-training-neural-networks-i)
-  - [07. Training neural networks II](#07-training-neural-networks-ii)
-  - [08. Deep learning software](#08-deep-learning-software)
-  - [09. CNN architectures](#09-cnn-architectures)
-  - [10. Recurrent Neural networks](#10-recurrent-neural-networks)
-  - [11. Detection and Segmentation](#11-detection-and-segmentation)
-  - [12. Visualizing and Understanding](#12-visualizing-and-understanding)
+  - [01.시각 인식을 위한 CNN 소개 (Introduction to CNN for visual recognition)](#01시각-인식을-위한-cnn-소개-introduction-to-cnn-for-visual-recognition)
+  - [02. 이미지 분류 (Image classification)](#02-이미지-분류-image-classification)
+  - [03. 손실함수와 최적화 (Loss function and optimization)](#03-손실함수와-최적화-loss-function-and-optimization)
+  - [04. 신경망 소개 (Introduction to Neural network)](#04-신경망-소개-introduction-to-neural-network)
+  - [05. 합성곱 신경망 (Convolutional neural networks (CNNs) )](#05-합성곱-신경망-convolutional-neural-networks-cnns-)
+  - [06. 신경망 학습 I (Training neural networks I)](#06-신경망-학습-i-training-neural-networks-i)
+  - [07. 신경망 학습 II (Training neural networks II)](#07-신경망-학습-ii-training-neural-networks-ii)
+  - [08. 딥러닝 소프트웨어 (Deep learning software)](#08-딥러닝-소프트웨어-deep-learning-software)
+  - [09. CNN 구조 (CNN architectures)](#09-cnn-구조-cnn-architectures)
+  - [10. 순환 신경망 (Recurrent Neural networks)](#10-순환-신경망-recurrent-neural-networks)
+  - [11. 이미지 탐지 및 분할 (Detection and Segmentation)](#11-이미지-탐지-및-분할-detection-and-segmentation)
+  - [12. 시각화와 이해하기 (Visualizing and Understanding)](#12-시각화와-이해하기-visualizing-and-understanding)
   - [13. 생성 모형 (Generative models)](#13-생성-모형-generative-models)
-  - [14. Deep reinforcement learning](#14-deep-reinforcement-learning)
-  - [15. Efficient Methods and Hardware for Deep Learning](#15-efficient-methods-and-hardware-for-deep-learning)
-  - [16. Adversarial Examples and Adversarial Training](#16-adversarial-examples-and-adversarial-training)
+  - [14. 심층 강화학습 (Deep reinforcement learning)](#14-심층-강화학습-deep-reinforcement-learning)
+  - [15. 딥러닝을 위한 효율적인 기법들과 하드웨어 (Efficient Methods and Hardware for Deep Learning)](#15-딥러닝을-위한-효율적인-기법들과-하드웨어-efficient-methods-and-hardware-for-deep-learning)
+  - [16. 적대적 예제와 적대적 훈련 (Adversarial Examples and Adversarial Training)](#16-적대적-예제와-적대적-훈련-adversarial-examples-and-adversarial-training)
 
 ## 강의 정보
 
@@ -47,44 +47,44 @@
 
 
 
-## 01. Introduction to CNN for visual recognition
+## 01.시각 인식을 위한 CNN 소개 (Introduction to CNN for visual recognition)
 
-- A brief history of Computer vision starting from the late 1960s to 2017.
-- Computer vision problems includes image classification, object localization, object detection, and scene understanding.
-- [Imagenet](http://www.image-net.org/) is one of the biggest datasets in image classification available right now.
-- Starting 2012 in the Imagenet competition, CNN (Convolutional neural networks) is always winning.
-- CNN actually has been invented in 1997 by [Yann Lecun](http://ieeexplore.ieee.org/document/726791/).
+- 1960년 후반부터 2017년 까지의 컴퓨터 비전 역사 약력.
+- 컴퓨터비전 영역에서 주로 다루는 문제들은 이미지 분류, 객체의 위치 파악, 객체 탐지, 그리고 장면 이해 등이 있다. 
+- [이미지넷(Imagenet)](http://www.image-net.org/) 은 현재, 이미지 분류 문제에서 알려진 가장 큰 데이터셋 중 하나이다. 
+- 2012년에 시작된 이미지넷 대회에서 CNN(합성곱 신경망)을 사용한 기법들이 항상 우승을 하고 있다. 
+- CNN은 1997년에 [Yann Lecun](http://ieeexplore.ieee.org/document/726791/)에 의해 처음으로 만들어졌다.
 
 
 
-## 02. Image classification
+## 02. 이미지 분류 (Image classification)
 
-- Image classification problem has a lot of challenges like illumination and viewpoints.
+- 이미지 분류 문제는 이미지의 조명이나 각도에 따라 분류가 달라지는 등의 해결문제들을 가지고 있다.
   - ![](Images/39.jpeg)
-- An image classification algorithm can be solved with **K nearest neighborhood** (KNN) but it can poorly solve the problem. The properties of KNN are:
-  - Hyperparameters of KNN are: k and the distance measure
-  - K is the number of neighbors we are comparing to.
-  - Distance measures include:
-    - L2 distance (Euclidean distance)
-      - Best for non coordinate points
-    - L1 distance (Manhattan distance)
-      - Best for coordinate points
-- Hyperparameters can be optimized using Cross-validation as following (In our case we are trying tp predict K):
-  1. Split your dataset into `f` folds.
-  2. Given predicted hyperparameters:
-     - Train your algorithm with f-1 folds and test it with the remain flood. and repeat this with every fold.
-  3. Choose the hyperparameters that gives the best training values (Average over all folds)
-- **Linear SVM** classifier is an option for solving the image classification problem, but the curse of dimensions makes it stop improving at some point.
-- **Logistic regression** is a also a solution for image classification problem, but image classification problem is non linear!
-- Linear classifiers has to run the following equation: `Y = wX + b` 
-  - shape of `w` is the same as `x` and shape of `b` is 1.
-- We can add 1 to X vector and remove the bias so that: `Y = wX`
-  - shape of `x` is `oldX+1` and `w` is the same as `x`
-- We need to know how can we get `w`'s and `b`'s that makes the classifier runs at best.
+- 이미지 분류 문제는 **K nearest neighborhood** (KNN) 알고리즘을 이용해서 풀 수 는 있지만 성능이 좋지는 않다. KNN은 다음과 같은 성질들이 있다:
+  - KNN의 하이퍼파라미터: k와 거리 측도
+  - K 는 우리가 비교하는 이웃 데이터들의 수 이다.
+  - 거리 측도는 다음과 같은 것들이 있다:
+    - L2 거리 (유클리드 거리)
+      - 좌표 형식이 아닌 데이터들에게 좋음
+    - L1 거리 (맨해튼 거리)
+      - 좌표 형식의 점들에게 좋음
+- 하이퍼 파라미터 들은 다음과 같은 과정을 거쳐 교차검증으로 구할 수 있다. (우리 예제에서 우리는 K값을 구하는 것이다):
+  1. 먼저 가지고 있는 데이터를 `f` 개의 폴드로 나눈다.
+  2. 주어진 예상 하이퍼파라미터들에 대해:
+      - f-1개의 폴드를 가지고 알고리즘을 학습시키고, 남은 폴드로 테스트해본다. 이 과정을 모든 폴드에 대해 시행한다.
+  3. 가장 좋은 학습 결과를 주는 하이퍼 파라미터를 고른다. (모든 폴드에 대해 평균을 내서)
+- **선형 SVM** 분류기는 이미지 분류 문제에 사용될 수 있는 다른 방법이지만, 차원의 저주 문제로 인해 어떤 한계점을 넘어서는 개선이 더뎌진다. 
+- **로지스틱 회귀** 역시 이미지 분류 문제에 쓰일 수 있는 한 가지 해결책 이지만, 이미지 분류 문제는 선형이 아니다!
+- 선형 분류기는 다음 식을 사용한다: `Y = wX + b` 
+  - `w` 의 모양은 `x` 의 모양과 같고, `b` 의 모양은 1이다.
+- 우리는 X벡터에 1을 더하고 바이어스 벡터를 없애 다음과 같은 식을 얻을 수 있다: `Y = wX`
+- `x` 의 모양은 `oldX+1` 이고, `w` 는 `x`와 같은 모양을 가진다.
+- 우리는 분류기의 성능을 가장 좋게 하는 `w`와 `b` 를 찾을 줄 알아야 한다.
 
 
 
-## 03. Loss function and optimization
+## 03. 손실함수와 최적화 (Loss function and optimization)
 
 - In the last section we talked about linear classifier but we didn't discussed how we could **train** the parameters of that model to get best `w`'s and `b`'s.
 
@@ -192,7 +192,7 @@
 
 
 
-## 04. Introduction to Neural network
+## 04. 신경망 소개 (Introduction to Neural network)
 
 - Computing the analytic gradient for arbitrary complex functions:
 
@@ -285,7 +285,7 @@
 
 
 
-## 05. Convolutional neural networks (CNNs)
+## 05. 합성곱 신경망 (Convolutional neural networks (CNNs) )
 
 - Neural networks history:
   - First perceptron machine was developed by Frank Rosenblatt in 1957. It was used to recognize letters of the alphabet. Back propagation wasn't developed yet.
@@ -382,7 +382,7 @@
 
 
 
-## 06. Training neural networks I
+## 06. 신경망 학습 I (Training neural networks I)
 
 - As a revision here are the Mini batch stochastic gradient descent algorithm steps:
 
@@ -590,7 +590,7 @@
 
 
 
-## 07. Training neural networks II
+## 07. 신경망 학습 II (Training neural networks II)
 
 - **Optimization algorithms**:
 
@@ -765,7 +765,7 @@
 
 
 
-## 08. Deep learning software
+## 08. 딥러닝 소프트웨어 (Deep learning software)
 
 - This section changes a lot every year in CS231n due to rabid changes in the deep learning softwares.
 - CPU vs GPU
@@ -890,7 +890,7 @@
 
 - Tensorflow/Caffe2 are used a lot in production especially on mobile.
 
-## 09. CNN architectures
+## 09. CNN 구조 (CNN architectures)
 
 - This section talks about the famous CNN architectures. Focuses on CNN architectures that won [ImageNet](www.image-net.org/) competition since 2012.
 
@@ -1123,7 +1123,7 @@
 
 
 
-## 10. Recurrent Neural networks
+## 10. 순환 신경망 (Recurrent Neural networks)
 
 - Vanilla Neural Networks "Feed neural networks", input of fixed size goes through some hidden units and then go to output. We call it a one to one network.
 
@@ -1248,7 +1248,7 @@
 
 
 
-## 11. Detection and Segmentation
+## 11. 이미지 탐지 및 분할 (Detection and Segmentation)
 
 - So far we are talking about image classification problem. In this section we will talk about Segmentation, Localization, Detection.
 
@@ -1381,7 +1381,7 @@
 
 
 
-## 12. Visualizing and Understanding
+## 12. 시각화와 이해하기 (Visualizing and Understanding)
 
 - We want to know what’s going on inside ConvNets?
 
@@ -1700,7 +1700,7 @@
 
 
 
-## 14. Deep reinforcement learning
+## 14. 심층 강화학습 (Deep reinforcement learning)
 
 - This section contains a lot of math.
 - Reinforcement learning problems are involving an agent interacting with an environment, which provides numeric reward signals.
@@ -1804,7 +1804,7 @@
 
 
 
-## 15. Efficient Methods and Hardware for Deep Learning
+## 15. 딥러닝을 위한 효율적인 기법들과 하드웨어 (Efficient Methods and Hardware for Deep Learning)
 
 - The original lecture was given by Song Han a PhD Candidate at standford.
 - Deep Conv nets, Recurrent nets, and deep reinforcement learning are shaping a lot of applications and changing a lot of our lives.
@@ -1946,7 +1946,7 @@
 
 
 
-## 16. Adversarial Examples and Adversarial Training
+## 16. 적대적 예제와 적대적 훈련 (Adversarial Examples and Adversarial Training)
 
 - **<u>What are adversarial examples?</u>**
   - Since 2013, deep neural networks have matched human performance at..
