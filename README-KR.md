@@ -86,28 +86,28 @@
 
 ## 03. 손실함수와 최적화 (Loss function and optimization)
 
-- In the last section we talked about linear classifier but we didn't discussed how we could **train** the parameters of that model to get best `w`'s and `b`'s.
+- 지난 시간에 우리는 선형 분류기에 대해 배웠지만 가장최적의 `w` 와 `b` 를 얻기 위해 모델을 어떻게 **학습** 시키는지는 배우지 않았다.
 
-- We need a loss function to measure how good or bad our current parameters.
+- 현재의 파라미터가 좋은지 나쁜지 평가하기 위해 손실함수를 정의해야 한다.
 
   - ```python
     Loss = L[i] =(f(X[i],W),Y[i])
-    Loss_for_all = 1/N * Sum(Li(f(X[i],W),Y[i]))      # Indicates the average
+    Loss_for_all = 1/N * Sum(Li(f(X[i],W),Y[i]))      # 평균
     ```
 
-- Then we find a way to minimize the loss function given some parameters. This is called **optimization**.
+- 그리고 주어진 파라미터 들에 대해 손실함수를 최소화하는 방법이 필요한데 그 방법을 **최적화** 라고 한다.
 
-- Loss function for a linear **SVM** classifier:
+- 선형 **SVM** 분류기의 손실함수:
 
-  - `L[i] = Sum where all classes except the predicted class (max(0, s[j] - s[y[i]] + 1))`
-  - We call this ***the hinge loss***.
-  - Loss function means we are happy if the best prediction are the same as the true value other wise we give an error with 1 margin.
-  - Example:
+  - `L[i] = 예측된 클래스를 제외한 모든 클래스들의 합(max(0, s[j] - s[y[i]] + 1))`
+  - 우리는 이것을 ***힌지 로스 (The Hinge Loss)*** 라고 한다..
+  - 손실 함수는, 만약 마진이 주어지지 않았을 떄, 가장 좋은 예측이 실제값과 같을 떄가 가장 좋다는 것을 보여준다.
+  - 예시:
     - ![](Images/40.jpg)
-    - Given this example we want to compute the loss of this image.
+    - 이 예제에서 우리는 주어진 이미지의 손실을 계산할 것이다.
     - `L = max (0, 437.9 - (-96.8) + 1) + max(0, 61.95 - (-96.8) + 1) = max(0, 535.7) + max(0, 159.75) = 695.45`
-    - Final loss is 695.45 which is big and reflects that the cat score needs to be the best over all classes as its the lowest value now. We need to minimize that loss.
-  - Its OK for the margin to be 1. But its a hyperparameter too.
+    - 최종 손실 값은 695.45인데, 고양이 클래스의 점수가 가장 높아야 하는데 가장 낮게 측정되어 있기 때문에 매우 크게 나왔다. 이 손실 값을 최소화 해 보자.
+  - 마진이 1이 되어도 괜찮지만 이 것 역시 하이퍼파라미터 이다.
 
 - If your loss function gives you zero, are this value is the same value for your parameter? No there are a lot of parameters that can give you best score.
 
@@ -1581,7 +1581,7 @@
   
 - **PixelRNN** 과 **PixelCNN**
 
-  - In a full visible belief network we use the chain rule to decompose likelihood of an image x into product of 1-d distributions
+  - (FVBN)In a full visible belief network we use the chain rule to decompose likelihood of an image x into product of 1-d distributions
     - `p(x) = sum(p(x[i]| x[1]x[2]....x[i-1]))`
     - Where p(x) is the Likelihood of image x and x[i] is Probability of i’th pixel value given all previous pixels.
   - To solve the problem we need to maximize the likelihood of training data but the distribution is so complex over pixel values.
@@ -1600,28 +1600,28 @@
   - There are some tricks to improve PixelRNN & PixelCNN.
   - PixelRNN and PixelCNN can generate good samples and are still active area of research.
 
-- **Autoencoders**
+- **오토인코더(Autoencoders)**
 
-  - Unsupervised approach for learning a lower-dimensional feature representation from unlabeled training data.
-  - Consists of Encoder and decoder.
-  - The encoder:
-    - Converts the input x to the features z. z should be smaller than x to get only the important values out of the input. We can call this dimensionality reduction.
-    - The encoder can be made with:
-      - Linear or non linear layers (earlier days days)
-      - Deep fully connected NN (Then)
-      - RELU CNN (Currently we use this on images)
-  - The decoder:
-    - We want the encoder to map the features we have produced to output something similar to x or the same x.
-    - The decoder can be made with the same techniques we made the encoder and currently it uses a RELU CNN.
-  - The encoder is a conv layer while the decoder is deconv layer! Means Decreasing and then increasing.
-  - The loss function is L2 loss function:
+  - 레이블이 없는 학습 데이터로 저차원의 특징표현을 학습하는 비지도학습 방법.
+  - 인코더와 디코더로 구성된다.
+  - 인코더:
+    - 입력된 x를 특징 z로 변환한다. z는 x보다 저차원이어야 한다. (크면 다 외워버리기 때문에 중요한 특징들만 추출하기 위해). 이것을 차원 축소라고 한다.
+    - 인코더는 다음의 것들로 구성될 수 있다:
+      - 선형 또는 비선형 레이어(초창기)
+      - Fully connected 심층신경망 (초기 후 )
+      - RELU CNN (최근에 이미지에서는 이것을 적용)
+  - 디코더:
+    - 우리 목적은 인코더로 추려낸 특징들로 처음의 x와 같거나 비슷한 결과물로 매핑하는 것이다.
+    - 디코더는 우리가 인코더를 만든 것과같은 테크닉으로 만들 수 있고 RELU CNN을 사용한다.
+  - 인코더는 convolutional 레이어이고 디코더는 deconvolutional 레이어이다. 즉 줄어들었다가 다시 늘어나게 하는 것이다.
+  - 손실함수는 L2 로스를 사용한다:
     - `L[i] = |y[i] - y'[i]|^2`
-      - After training we though away the decoder.`# Now we have the features we need`
-  - We can use this encoder we have to make a supervised model.
-    - The value of this it can learn a good feature representation to the input you have.
-    - A lot of times we will have a small amount of data to solve problem. One way to tackle this is to use an Autoencoder that learns how to get features from images and train your small dataset on top of that model.
-  - The question is can we generate data (Images) from this Autoencoder?
-
+      - 학습을 시킨 후 디코더를 버린다. `# 우리가 필요로 하는 특징들은 이미 얻었다.`
+  - 지도학습 모델을 만들기 위해 우리가 만든 인코더를 사용할 수 있다.
+    - 이렇게 하는 것은 우리가 가지고 있는 input에 대해 좋은 특징 표현을 배우게 할 수 있기 때문이다.
+    - 보통 문제를 풀어야 할 때 가지고있는 데이터가 적을 때가 많다. 이런 문제를 해결하는 한 가지 방법은 이미지들의 특징들을 학습할 수 있는 오토인코더를 사용해 가지고 있는 작은 데이터를 학습시키는 것이다.
+  - 그러면 우리는 이 오토인코더를 사용해 새로운 데이터(이미지)들을 생성할 수 있을까? 하는 질문을 할 수 있다.
+  
 - **Variational Autoencoders (VAE)**
 
   - Probabilistic spin on Autoencoders - will let us sample from the model to generate data!
