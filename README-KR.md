@@ -9,25 +9,25 @@
 
 ## 목차
 (역자: 각 강의 제목은 편의를 위해 영어로 그대로 두고 옆에 번역을 달았습니다.)
-- [스탠포드 CS231n 2017 요약](#스탠포드-cs231n-2017-요약)
-  - [목차](#목차)
-  - [강의 정보](#강의-정보)
-  - [01.시각 인식을 위한 CNN 소개 (Introduction to CNN for visual recognition)](#01시각-인식을-위한-cnn-소개-introduction-to-cnn-for-visual-recognition)
-  - [02. 이미지 분류 (Image classification)](#02-이미지-분류-image-classification)
-  - [03. 손실함수와 최적화 (Loss function and optimization)](#03-손실함수와-최적화-loss-function-and-optimization)
-  - [04. 신경망 소개 (Introduction to Neural network)](#04-신경망-소개-introduction-to-neural-network)
-  - [05. 합성곱 신경망 (Convolutional neural networks (CNNs) )](#05-합성곱-신경망-convolutional-neural-networks-cnns-)
-  - [06. 신경망 학습 I (Training neural networks I)](#06-신경망-학습-i-training-neural-networks-i)
-  - [07. 신경망 학습 II (Training neural networks II)](#07-신경망-학습-ii-training-neural-networks-ii)
-  - [08. 딥러닝 소프트웨어 (Deep learning software)](#08-딥러닝-소프트웨어-deep-learning-software)
-  - [09. CNN 구조 (CNN architectures)](#09-cnn-구조-cnn-architectures)
-  - [10. 순환 신경망 (Recurrent Neural networks)](#10-순환-신경망-recurrent-neural-networks)
-  - [11. 이미지 탐지 및 분할 (Detection and Segmentation)](#11-이미지-탐지-및-분할-detection-and-segmentation)
-  - [12. 시각화와 이해하기 (Visualizing and Understanding)](#12-시각화와-이해하기-visualizing-and-understanding)
-  - [13. 생성 모형 (Generative models)](#13-생성-모형-generative-models)
-  - [14. 심층 강화학습 (Deep reinforcement learning)](#14-심층-강화학습-deep-reinforcement-learning)
-  - [15. 딥러닝을 위한 효율적인 기법들과 하드웨어 (Efficient Methods and Hardware for Deep Learning)](#15-딥러닝을-위한-효율적인-기법들과-하드웨어-efficient-methods-and-hardware-for-deep-learning)
-  - [16. 적대적 예제와 적대적 훈련 (Adversarial Examples and Adversarial Training)](#16-적대적-예제와-적대적-훈련-adversarial-examples-and-adversarial-training)
+- [스탠포드 CS231n 2017 요약](#%EC%8A%A4%ED%83%A0%ED%8F%AC%EB%93%9C-cs231n-2017-%EC%9A%94%EC%95%BD)
+  - [목차](#%EB%AA%A9%EC%B0%A8)
+  - [강의 정보](#%EA%B0%95%EC%9D%98-%EC%A0%95%EB%B3%B4)
+  - [01.시각 인식을 위한 CNN 소개 (Introduction to CNN for visual recognition)](#01%EC%8B%9C%EA%B0%81-%EC%9D%B8%EC%8B%9D%EC%9D%84-%EC%9C%84%ED%95%9C-cnn-%EC%86%8C%EA%B0%9C-introduction-to-cnn-for-visual-recognition)
+  - [02. 이미지 분류 (Image classification)](#02-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B6%84%EB%A5%98-image-classification)
+  - [03. 손실함수와 최적화 (Loss function and optimization)](#03-%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98%EC%99%80-%EC%B5%9C%EC%A0%81%ED%99%94-loss-function-and-optimization)
+  - [04. 신경망 소개 (Introduction to Neural network)](#04-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%EC%86%8C%EA%B0%9C-introduction-to-neural-network)
+  - [05. 합성곱 신경망 (Convolutional neural networks (CNNs) )](#05-%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%8B%A0%EA%B2%BD%EB%A7%9D-convolutional-neural-networks-cnns)
+  - [06. 신경망 학습 I (Training neural networks I)](#06-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%ED%95%99%EC%8A%B5-i-training-neural-networks-i)
+  - [07. 신경망 학습 II (Training neural networks II)](#07-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%ED%95%99%EC%8A%B5-ii-training-neural-networks-ii)
+  - [08. 딥러닝 소프트웨어 (Deep learning software)](#08-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-deep-learning-software)
+  - [09. CNN 구조 (CNN architectures)](#09-cnn-%EA%B5%AC%EC%A1%B0-cnn-architectures)
+  - [10. 순환 신경망 (Recurrent Neural networks)](#10-%EC%88%9C%ED%99%98-%EC%8B%A0%EA%B2%BD%EB%A7%9D-recurrent-neural-networks)
+  - [11. 이미지 탐지 및 분할 (Detection and Segmentation)](#11-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%83%90%EC%A7%80-%EB%B0%8F-%EB%B6%84%ED%95%A0-detection-and-segmentation)
+  - [12. 시각화와 이해하기 (Visualizing and Understanding)](#12-%EC%8B%9C%EA%B0%81%ED%99%94%EC%99%80-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-visualizing-and-understanding)
+  - [13. 생성 모형 (Generative models)](#13-%EC%83%9D%EC%84%B1-%EB%AA%A8%ED%98%95-generative-models)
+  - [14. 심층 강화학습 (Deep reinforcement learning)](#14-%EC%8B%AC%EC%B8%B5-%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5-deep-reinforcement-learning)
+  - [15. 딥러닝을 위한 효율적인 기법들과 하드웨어 (Efficient Methods and Hardware for Deep Learning)](#15-%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9D%B8-%EA%B8%B0%EB%B2%95%EB%93%A4%EA%B3%BC-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-efficient-methods-and-hardware-for-deep-learning)
+  - [16. 적대적 예제와 적대적 훈련 (Adversarial Examples and Adversarial Training)](#16-%EC%A0%81%EB%8C%80%EC%A0%81-%EC%98%88%EC%A0%9C%EC%99%80-%EC%A0%81%EB%8C%80%EC%A0%81-%ED%9B%88%EB%A0%A8-adversarial-examples-and-adversarial-training)
 
 ## 강의 정보
 
@@ -109,28 +109,28 @@
     - 최종 손실 값은 695.45인데, 고양이 클래스의 점수가 가장 높아야 하는데 가장 낮게 측정되어 있기 때문에 매우 크게 나왔다. 이 손실 값을 최소화 해 보자.
   - 마진이 1이 되어도 괜찮지만 이 것 역시 하이퍼파라미터 이다.
 
-- If your loss function gives you zero, are this value is the same value for your parameter? No there are a lot of parameters that can give you best score.
+- 로스 값이 가장 좋게 되는 파라미터는 여러가지가 있을수 있다. 
 
-- You’ll sometimes hear about people instead using the squared hinge loss SVM (or L2-SVM). that penalizes violated margins more strongly (quadratically instead of linearly). The unsquared version is more standard, but in some datasets the squared hinge loss can work better.
+- Squared 힌지 손실 SVM (L2-SVM이라고도 하는) 을 들어봤을 것이다. 마진을 넘는 것에 대해 더 강한 불이익을 주는데, 선형보다는 2차적(quadratically)으로 준다. 제곱되지 않은 버전이 좀 더 일반적이지만 몇몇 데이터셋에서는 제곱 힌지 손실이 더 잘 될 수도 있다.
 
-- We add **regularization** for the loss function so that the discovered model don't overfit the data.
+- 우리는 손실 함수에 **정규화**를 추가해 우리가 찾는 모델이 데이터에 오버피팅 하는 것을 막을 수 있다.
 
   - ```python
     Loss = L = 1/N * Sum(Li(f(X[i],W),Y[i])) + lambda * R(W)
     ```
 
-  - Where `R` is the regularizer, and `lambda` is the regularization term.
+  - `R` 은 정규화 항이고,  `lambda` 정규화 변수이다.
 
-- There are different regularizations techniques:
+- 정규화에는 여러가지 기법들이있다:
 
-  - | Regularizer           | Equation                            | Comments               |
+  - | 정규화           | 식                            | 설명               |
     | --------------------- | ----------------------------------- | ---------------------- |
-    | L2                    | `R(W) = Sum(W^2)`                   | Sum all the W squared  |
-    | L1                    | `R(W) = Sum(lWl)`                   | Sum of all Ws with abs |
-    | Elastic net (L1 + L2) | `R(W) = beta * Sum(W^2) + Sum(lWl)` |                        |
-    | Dropout               |                                     | No Equation            |
+    | L2                    | `R(W) = Sum(W^2)`                   | 모든 W제곱의 합  |
+    | L1                    | `R(W) = Sum(lWl)`                   | 모든 W절대값의 합 |
+    | 엘라스틱넷 (L1 + L2) | `R(W) = beta * Sum(W^2) + Sum(lWl)` |                        |
+    | 드롭아웃              |                                     | 식은없다.           
 
-- Regularization prefers smaller `W`s over big `W`s.
+- 정규화는 큰 `W`보다는 작은 `W`를 선호한다.
 
 - Regularizations is called weight decay. biases should not included in regularization.
 
